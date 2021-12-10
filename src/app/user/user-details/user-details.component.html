@@ -1,0 +1,75 @@
+<div class="background-image">
+    <button class="btn-danger ml-auto mt-5 mr-5" (click)="logOut()">Logout</button>
+    <h1 style="color: cornsilk;"> Welcome to dashboard {{emplyeeName}}</h1>
+    <div class="card">
+
+        <div class="card-body">
+            <form [formGroup]="userDetailForm" (ngSubmit)="onSubmit()">
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label>Vaccine Name</label>
+                        <input type="text" formControlName="vaccineName" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && f.vaccineName.errors }" />
+                        <div *ngIf="submitted && f.vaccineName.errors" class="invalid-feedback">
+                            <div *ngIf="f.vaccineName.errors.required">vaccine name is required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label>Is first doze taken ? </label>
+                        <div class="radio" *ngFor="let doze of dozesTaken;let i = index">
+                            <div class="custom-control custom-radio">
+                                <input id="firstDoze_{{i}}" type="radio" class="custom-control-input" [value]="doze"
+                                    (change)="handleChangeFirstDoze(doze)" name="firstDoze" formControlName="firstDoze">
+                                <label class="custom-control-label" for="firstDoze_{{i}}">{{doze}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              
+                <div class="form-row" *ngIf="isFirstDozeTaken == 'Yes'">
+                    <div class="form-group col">
+                        <label>First doze date </label>
+                        <input formControlName="firstDozedate" class="form-control" id="firstDozedate" type="date" />
+
+                        <div *ngIf="submitted && f.firstDozedate.errors" class="invalid-feedback">
+                            <div *ngIf="f.firstDozedate.errors.required">vaccine name is required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col">
+                        <label>Is second doze taken ? </label>
+                        <div class="radio" *ngFor="let doze of dozesTaken;let i = index">
+                            <div class="custom-control custom-radio">
+                                <input id="secondDoze_{{i}}" type="radio" class="custom-control-input" [value]="doze"
+                                    (change)="handleChangeSecondDoze(doze)" name="secondDoze"
+                                    formControlName="secondDoze">
+                                <label class="custom-control-label" for="secondDoze_{{i}}">{{doze}}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row" *ngIf="isSecondDozeTaken == 'Yes'">
+                    <div class="form-group col">
+                        <label>Second doze date </label>
+                        <input formControlName="secondDozedate" class="form-control" id="secondDozedate" type="date" />
+
+                        <div *ngIf="submitted && f.secondDozedate.errors" class="invalid-feedback">
+                            <div *ngIf="f.secondDozedate.errors.required">vaccine name is required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <button class="btn btn-primary">Add</button>
+                    <button class="btn btn-success ml-4" (click)="onReset()">Reset</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+<div class="navbar">
+    <h4 style="text-align: center; color: cornsilk;">Admin Panel</h4>
+
+    <a *ngIf="arraySplitUrl[2] == 'vaccination-details'" routerLink="/admin/employee-details" class="button-navbar ml-3"
+        href="javascript:void(0);">Employee Details</a>
+    <a *ngIf="arraySplitUrl[2] == 'employee-details'" routerLink="/admin/vaccination-details" class="button-navbar ml-3"
+        href="javascript:void(0);">Vaccination Details</a>
+    <a  (click)="navigateVaccinationDetail()" class="button-navbar ml-3"
+        href="javascript:void(0);">Add Vaccination</a>
+    <button class="btn-danger ml-auto" (click)="logOut()">Logout</button>
+</div>

@@ -1,0 +1,55 @@
+<app-navbar></app-navbar>
+
+
+<div class="background-image">
+    <h1 style="color: cornsilk; text-align: center;">Employee Details</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <div class="form-group">
+                    <strong>Search Employee Name</strong>
+                    <input type="text" [(ngModel)]="emp_name" class="form-control" />
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="form-group">
+                    <strong>Gender</strong>
+                    <select class="form-control" [(ngModel)]="GENDER">
+                        <option></option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Employee Id</th>
+                    <th scope="col">Employee Name</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col">Access Right</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let emp of employeeData | employeeNameSearch:emp_name | tableFilter: GENDER;let i = index">
+                    <th scope="row">{{emp.EMPLOYEE_ID}}</th>
+                    <td>{{emp.EMPLOYEE_NAME}}</td>
+                    <td>{{emp.GENDER}}</td>
+                    <td>
+                        <select (change)="updateAccessRight($event.target.value,emp.ID)">
+                            <option value="default">Select Access right</option>
+                            <option selected=""  *ngFor="let access of accessRight" [value]="access" >
+                                {{access}}
+                            </option>
+                        </select>
+                    </td>
+
+                </tr>
+
+            </tbody>
+        </table>
+
+    </div>
+</div>
