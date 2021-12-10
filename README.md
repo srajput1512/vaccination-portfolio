@@ -1,27 +1,56 @@
-# VaccinationProject
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.0.
 
-## Development server
+#VACCINATION PROJECT
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Technologies:
+Front End :  Angualr, HTML, CSS, Bootstrap
+Back End : Firebase (database)
 
-## Code scaffolding
+What are Developed?:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Front User:
+1. Employee Login screen with validation.
+2. Employee Registration screen with Validation
+3. Vaccination detail screen with validation
+ 
+Admin User:
+1. Admin Login screen with validation.
+2. Employee details screen listing
+   -> Search by employee name
+   -> Filter by gender
+   -> Access right update on dropdown selection
+3. Vaccination detail screen listing
+   -> delete specific records
 
-## Build
+AuthGard: Applied authgaurd not to access specific routes until user is loggedin
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+DATABASE:
+-> Need to connect to fire base by providing specific firebase configuration (added in environment.ts  & environment.prod.ts file)
+  
+export const environment = {
+  production: false,
+  firebase: {
+    apiKey: "xxxxxxxx-xxxxxxxx",
+    authDomain: "xxxxxxxxxxxxxxxxxxxxxxxx",
+    databaseURL: "xxxxxxxxxxxxxxxxxxxxxxxx",
+    projectId: "xxxxxxxx",
+    storageBucket: "xxxxxxxx",
+    messagingSenderId: "xxxxxx",
+    appId: "xxxxx",
+    measurementId: "xxxxxxxxxxxxxxxx"
+  }
+};
 
-## Running unit tests
+-> All the databaseCollection would be created). Only for admin we need to add collection in firestore database because we do not have register page for admin.
+   admin-login
+  (USER_NAME,PASSWORD) 
+   So create a collection name "admin-login" and add the above fields for username and password and set the values.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+ Rest collection would be created automatically.
 
-## Running end-to-end tests
+ Note : "npm install" is must 
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+ Whats not achived in project:
+ 1. Edit functionality 
+ 2. Setting user access functionality
